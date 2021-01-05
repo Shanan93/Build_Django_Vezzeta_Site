@@ -31,12 +31,12 @@
                                         
                                 </div>
                                 <div class="jobs_conetent">
-                                    <a href=""><h5>{{ doctor.profile.name }} دكتور </h5></a>
+                                    <a href="{% url 'accounts:doctors_detail' doctor.profile.slug %}"><h5>{{ doctor.profile.name }} دكتور </h5></a>
                                     <h6>{{ doctor.profile.subtitle }} </h6>
                                     
                                     <div class="links_locat">
                                         <div class="location">
-                                            <p> <i class="fas fa-briefcase-medical"></i> دكتور <span style="color: blue;">{{ doctor.profile.name }} </span> متخصص في <span style="color: blue;">{{ doctor.profile.doctor_specialist}}</span></p>
+                                            <p> <i class="fas fa-briefcase-medical"></i> دكتور <span style="color: blue;">{{ doctor.profile.doctor }} </span> متخصص في <span style="color: blue;">{{ doctor.profile.doctor_specialist}}</span></p>
                                             <p> <i class="fa fa-map-marker"></i>العنوان : {{ doctor.profile.adress_details }} </p>
                                             <p> <i class="fa fa-map-marker"></i> الكشف : <span style="color: blue;">{{ doctor.profile.price }} </span> جنية</p>
                                             <p> <i class="fa fa-clock-o"></i> مدة الانتظار : <span style="color: blue;">{{ doctor.profile.waiting_time }} </span> ساعه</p>
