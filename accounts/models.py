@@ -42,7 +42,7 @@ class Profile(models.Model):
     facebook = models.CharField(max_length=50,blank=True, null=True)
     twittre = models.CharField(max_length=50,blank=True, null=True)
     google = models.CharField(max_length=50,blank=True, null=True)
-    join_new = models.DateField(_("وقت الإنضمام :"), auto_now_add=True,blank=True, null=True)
+    join_new = models.DateField(_("وقت الإنضمام :"), auto_now_add=True)
     type_of_person = models.CharField(_("النوع"),choices=TYPE_OF_PERSON, max_length=50)
     image = models.ImageField(_("الصورة الشخصية"), upload_to='profile',blank=True, null=True)
     slug = models.SlugField(_("slug"), blank=True, null=True)

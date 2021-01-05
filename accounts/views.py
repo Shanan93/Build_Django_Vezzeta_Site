@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from .models import Profile
 from .forms import Login_Form
 from django.contrib.auth import  authenticate, login
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def doctors_list(request):
@@ -30,12 +32,11 @@ def user_login(request):
     else:
         form = Login_Form()
     
-    return render(request, 'user/login.html', {'form': form })
+        return render(request, 'user/login.html', {'form': form })
 
-"""
 def signup(request):
     if request.method == 'POST':
-       form = UserCreationForms(request.POST)
+       form = UserCreationForm(request.POST)
        if form.is_valid():
             username = form.clean_data.get('username')
             password = form.clean_data.get('password')
@@ -43,11 +44,11 @@ def signup(request):
             login(request,user)
             return redirect('accounts:doctors_list')
     else:    
-        form = UserCreationForms()
+        form = UserCreationForm()
     
     return render(request, 'user/signup.html', {'form': form })
-"""
 
+
+@login_required(login_url='accounts:login')
 def myprofile(request):
-    
     return render(request, 'user/myprofile.html', {})
