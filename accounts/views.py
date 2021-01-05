@@ -25,10 +25,29 @@ def user_login(request):
         user = authenticate(request, username = username, password = password)
         if user is not None:
             login(request,user)
-            return redirect('accounts:doctors_list',)
+            return redirect('accounts:doctors_list')
         
-    
-    form = Login_Form()
+    else:
+        form = Login_Form()
     
     return render(request, 'user/login.html', {'form': form })
+
+"""
+def signup(request):
+    if request.method == 'POST':
+       form = UserCreationForms(request.POST)
+       if form.is_valid():
+            username = form.clean_data.get('username')
+            password = form.clean_data.get('password')
+            user = authenticate(request, username = username, password = password)
+            login(request,user)
+            return redirect('accounts:doctors_list')
+    else:    
+        form = UserCreationForms()
     
+    return render(request, 'user/signup.html', {'form': form })
+"""
+
+def myprofile(request):
+    
+    return render(request, 'user/myprofile.html', {})
