@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from .models import Profile
-from .forms import Login_Form, UserCreationForm, UpdateUserForm
+from .forms import Login_Form, UserCreationForms, UpdateUserForm
 from django.contrib.auth import  authenticate, login
 from django.contrib.auth.decorators import login_required
 
@@ -35,15 +35,16 @@ def user_login(request):
 
 def signup(request):
     if request.method == 'POST':
-       form = UserCreationForm(request.POST)
+       form = UserCreationForms(request.POST)
        if form.is_valid():
-            username = form.clean_data.get('username')
-            password = form.clean_data.get('password')
-            user = authenticate(request, username = username, password = password)
-            login(request,user)
-            return redirect('accounts:doctors_list')
+           form.save()
+           username = form.cleaned_data.get('username')
+           password = form.cleaned_data.get('password')
+           user = authenticate(username = username, password = password)
+           login(request,user)
+           return redirect('accounts:doctors_list')
     else:
-        form = UserCreationForm()
+        form = UserCreationForms()
 
     return render(request, 'user/signup.html', {'form': form })
 
