@@ -17,4 +17,18 @@ class Login_Form(forms.ModelForm):
         fields = ('username', 'password','first_name','last_name','email','password2' )
         
         
-        #, ,
+ 
+
+
+class UpdateUserForm(forms.ModelForm):
+   
+    first_name = forms.CharField(label = 'الاسم الاول')
+    last_name = forms.CharField(label = 'الاسم الاخير')
+    email = forms.EmailField(label = 'البريد الالكتروني')
+    
+    
+    class Meta:
+        model = User
+        fields = ('first_name','last_name','email')
+
+
